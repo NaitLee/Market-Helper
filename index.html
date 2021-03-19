@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Helper</title>
+    <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+    <section class="hidden"></section>
+    <section class="part0">
+        <table id="items_table">
+            <thead>
+                <tr><td>Barcode</td><td>Item</td><td>Unit</td><td>Price</td><td>Actions</td></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+    <section class="part1">
+        <div class="left">
+            <table class="label_and_input">
+                <tbody>
+                    <tr>
+                        <td>Barcode: </td>
+                        <td><input type="text" id="input_barcode" tabindex="1" /></td>
+                        <td><button onclick="helper.input();">Input</button></td>
+                    </tr>
+                    <tr>
+                        <td>Price: </td>
+                        <td><input type="text" id="input_price" tabindex="2" /></td>
+                        <td><button onclick="helper.inputAsPrice();">Insert</button></td>
+                    </tr>
+                    <tr class="use_credit_form">
+                        <td>Use Credits: </td>
+                        <td><input type="text" id="input_credits" /></td>
+                        <td><button onclick="helper.useCredits();">Insert</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="big" onclick="helper.toggleMenu();" tabindex="4">Menu</button>
+            <p id="log"></p>
+        </div>
+        <div class="right">
+            <div class="sum">SumBefore<span id="sum">0</span>SumAfter</div>
+            <button class="big" onclick="helper.clear();">Clear</button>
+            <button class="big" onclick="helper.settle();" tabindex="3">Settle</button>
+        </div>
+    </section>
+    <!-- Menu -->
+    <section class="part2" id="menu">
+        <div>
+            <button class="big" onclick="helper.toggleMenu();">Close Menu</button>
+            <!-- <button class="big" onclick="helper.shutdown();">Shutdown Server</button> -->
+        </div>
+        <div>
+            <h1>Member Code</h1>
+            <div id="member_code"></div>
+            <p>Please shot this code with mobile phone</p>
+        </div>
+        <div>
+            <h1>Manage</h1>
+            <iframe src="" id="manager"></iframe>
+        </div>
+    </section>
+    <textarea id="i18-N" style="display: none;">
+[global]
+version=0.0.1
+
+[en-US]
+SumBefore=Sum: $ 
+SumAfter= 
+ForOne=x 1
+PaperTitle=Shopping Details
+PaperDescription=Sum: $%sum%
+InvalidCode=%code%: Invalid code!
+WelcomeMember=%member%, Welcome! Your credits: %left_credits%
+UsedCredits=%member%: Successfully used credits! Credits left: %left_credits%
+MemberNotFound=Sorry, no data about this member!
+
+[zh-CN]
+Market Helper=售货辅助器
+Barcode=条码
+Item=项目
+Unit=单位
+Price=价格
+Actions=操作
+Barcode: =条码：
+Price: =价格：
+Input=输入
+Insert=计入
+(Manual Input)=（手动输入）
+Menu=菜单
+Close Menu=关闭菜单
+Shutdown Server=关闭服务器
+Delete=删除
+Clear=归零
+Settle=结算
+SumBefore=合计：
+SumAfter= 元
+Member Code=会员码
+ForOne=1 个
+PaperTitle=购物清单
+PaperDescription=合计：%sum% 元
+InvalidCode=%code%：无效条码！
+Please shot this code with mobile phone=请使用手机拍摄此条形码
+WelcomeMember=%member%，欢迎光临！您持有积分：%left_credits%
+Use Credits: =使用积分：
+UsedCredits=%member%：积分使用成功！剩余积分：%left_credits%
+MemberNotFound=抱歉，未检索到此会员信息！
+Manage=管理
+    </textarea>
+    <script src="./js/i18-N.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>

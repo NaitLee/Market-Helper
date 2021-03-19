@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+</head>
+<body>
+    <section>
+        <h1>Record Items</h1>
+        <p>
+            <span>Barcode: </span><input type="text" name="item_barcode" /><br />
+            <span>Name: </span><input type="text" name="item_name" /><br />
+            <span>Unit: </span><input type="text" name="item_unit" /><br />
+            <span>Price: </span><input type="text" name="item_price" /><br />
+            <button>Record</button>
+        </p>
+    </section>
+    <textarea id="i18-N" style="display: none;">
+[zh-CN]
+Record Items=记录商品
+Barcode: =条码：
+Name: =名称：
+Unit: =单位：
+Price: =价格：
+Record=记录
+    </textarea>
+    <script src="./js/i18-N.js"></script>
+    <script>
+        var apikey = '%apikey%';
+        class RecordItems {
+            constructor() {
+                this.inputBarcode = document.querySelector('input[name="item_barcode"]');
+                this.inputName = document.querySelector('input[name="item_name"]');
+                this.inputUnit = document.querySelector('input[name="item_unit"]');
+                this.inputPrice = document.querySelector('input[name="item_price"]');
+                this.inputBarcode.addEventListener('keyup', event => {
+                    if (event.key == 'Enter') this.inputName.focus();
+                });
+                this.inputName.addEventListener('keyup', event => {
+                    if (event.key == 'Enter') this.inputUnit.focus();
+                });
+                this.inputUnit.addEventListener('keyup', event => {
+                    if (event.key == 'Enter') this.inputPrice.focus();
+                });
+                this.inputPrice.addEventListener('keyup', event => {
+                    if (event.key == 'Enter') this.record();
+                });
+            }
+            record() {
+                fetch(`/~?apikey=${apikey}&action=write_record&record=${this.inputBarcode.value},${this.inputName.value},${this.inputUnit.value},${this.inputPrice.value}`).then(r => r.text()).then(t => {
+                    this.inputBarcode.value = '';
+                    this.inputName.value = '';
+                    this.inputUnit.value = '';
+                    this.inputPrice.value = '';
+                    this.inputBarcode.focus();
+                });
+            }
+        }
+        var recorder = new RecordItems();
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #table {
+            width: 100%;
+        }
+        #table tr td:nth-child(1) {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <p id="title"></p>
+    <table id="table">
+        <thead>
+            <tr><td>Item</td><td>Price</td></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <p id="description"></p>
+    <textarea id="i18-N" style="display: none;">
+[zh-CN]
+Item=项目
+Price=价格
+    </textarea>
+    <script src="js/i18-N.js"></script>
+</body>
+</html>
