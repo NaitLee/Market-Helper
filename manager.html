@@ -5,19 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage</title>
+    <style>
+        .part0 {
+            position: fixed;
+            height: calc(100% - 1.2em);
+            overflow: auto;
+        }
+        .part1 {
+            position: fixed;
+            bottom: 0;
+            height: 2em;
+        }
+        .part1 p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <section>
+    <section class="part0">
         <h1>Record Items</h1>
         <p>
             <span>Barcode: </span><input type="text" name="item_barcode" /><br />
             <span>Name: </span><input type="text" name="item_name" /><br />
             <span>Unit: </span><input type="text" name="item_unit" /><br />
             <span>Price: </span><input type="text" name="item_price" /><br />
-            <button>Record</button>
+            <button onclick="recorder.record();">Record</button>
+        </p>
+        <h1>Manage Database</h1>
+        <p>
+            <span>Import: </span><input type="file" name="import_database" />
+            <button onclick="database_manager.import();">Import</button><br />
+            <span>Export: </span>
+            <button onclick="database_manager.export();">Export</button>
         </p>
     </section>
+    <section class="part1">
+        <p id="log"></p>
+    </section>
     <textarea id="i18-N" style="display: none;">
+[en-US]
+LogSuccess=%s%: Success!
+
 [zh-CN]
 Record Items=记录商品
 Barcode: =条码：
@@ -25,10 +53,41 @@ Name: =名称：
 Unit: =单位：
 Price: =价格：
 Record=记录
+Manage Database=管理数据库
+Import: =导入：
+Import=导入
+Export: =导出：
+Export=导出
+database.csv=数据库.csv
+LogSuccess=%s%：成功！
     </textarea>
     <script src="./js/i18-N.js"></script>
     <script>
         var apikey = '%apikey%';
+        class Logger {
+            constructor() {
+                this.logElement = document.getElementById('log');
+            }
+            log(msg, type = 'info') {
+                this.logElement.querySelectorAll('*').forEach(e => e.remove());
+                let wrapper = document.createElement('span');
+                wrapper.innerText = msg;
+                switch (type) {
+                    case 'info':
+                        wrapper.style.color = 'black';
+                        break;
+                    case 'warning':
+                        wrapper.style.color = 'orange';
+                        break;
+                    case 'error':
+                        wrapper.style.color = 'red';
+                        break;
+                }
+                this.logElement.appendChild(wrapper);
+            }
+        }
+        var logger = new Logger();
+
         class RecordItems {
             constructor() {
                 this.inputBarcode = document.querySelector('input[name="item_barcode"]');
@@ -50,6 +109,7 @@ Record=记录
             }
             record() {
                 fetch(`/~?apikey=${apikey}&action=write_record&record=${this.inputBarcode.value},${this.inputName.value},${this.inputUnit.value},${this.inputPrice.value}`).then(r => r.text()).then(t => {
+                    logger.log(i18N.get('LogSuccess').replace('%s%', this.inputName.value));
                     this.inputBarcode.value = '';
                     this.inputName.value = '';
                     this.inputUnit.value = '';
@@ -59,6 +119,33 @@ Record=记录
             }
         }
         var recorder = new RecordItems();
+        
+        class DatabaseManager {
+            constructor() {
+                this.inputDatabase = document.querySelector('input[name="import_database"]');
+            }
+            import() {
+                let reader = new FileReader();
+                let file = this.inputDatabase.files[0];
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', `/~?apikey=${apikey}&action=import_database`);
+                xhr.onload = function() {
+                    logger.log(i18N.get('LogSuccess').replace('%s%', file.name));
+                }
+                reader.onload = (event) => {
+                    xhr.send(event.target.result);
+                }
+                reader.readAsText(file);
+            }
+            export() {
+                let a = document.createElement('a');
+                a.href = '/database/records.csv';
+                a.target = '_blank';
+                a.download = i18N.get('database.csv');
+                a.click();
+            }
+        }
+        var database_manager = new DatabaseManager();
     </script>
 </body>
 </html>

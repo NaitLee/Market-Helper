@@ -20,6 +20,9 @@ def smartoscmd(posixcall, ntcall):
 def ntpath(path: str):
     return path.replace('/', '\\')
 
+def get_apikey():
+    return ''.join(list(map(lambda x: chr(random.randint(48, 57)), ['0'] * 32)))
+
 def urlvar(path):
     a = path.split('?')
     d = []

@@ -41,7 +41,7 @@ class MyServer(BaseHTTPRequestHandler):
                         self.send_response(200)
                         self.send_header('Content-Type', mimeLib.getmime('*.txt'))
                         self.end_headers()
-                        self.wfile.write(_statics['config']['apikey'].encode('utf-8'))
+                        self.wfile.write(_statics['apikey'].encode('utf-8'))
                         can_get_apikey = False
                     else:
                         self.send_response(403)
@@ -49,7 +49,7 @@ class MyServer(BaseHTTPRequestHandler):
                         self.end_headers()
                         self.wfile.write(b'Forbidden')
                     return
-                if v['apikey'] != _statics['config']['apikey']:
+                if v['apikey'] != _statics['apikey']:
                     self.send_response(403)
                     self.send_header('Content-Type', mimeLib.getmime('*.txt'))
                     self.end_headers()
@@ -173,6 +173,29 @@ class MyServer(BaseHTTPRequestHandler):
                     self.send_header('Content-Type', mimeLib.getmime('*.html'))
                     self.end_headers()
                     self.wfile.write(b'Not Found')
+                    return
+    def do_POST(self):
+        if self.path == '/':
+            self.path = '/index.html'
+        path = recover(self.path)
+        v = urlvar(path)
+        if len(path) >= 2:
+            if path[0:2] == '/~':
+                if v['apikey'] != _statics['apikey']:
+                    self.send_response(403)
+                    self.send_header('Content-Type', mimeLib.getmime('*.txt'))
+                    self.end_headers()
+                    self.wfile.write(b'Forbidden')
+                    return
+                if v['action'] == 'import_database':
+                    self.send_response(200)
+                    self.send_header('Content-Type', mimeLib.getmime('*.txt'))
+                    self.end_headers()
+                    length = int(self.headers['Content-Length'])
+                    f = open('./database/records.csv', 'ab')
+                    f.write(self.rfile.read(length))
+                    f.close()
+                    self.wfile.write(b'OK')
                     return
 
 class ThreadedHTTPServer(socketserver.ThreadingMixIn, HTTPServer):

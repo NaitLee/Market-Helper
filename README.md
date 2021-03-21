@@ -17,8 +17,8 @@ You can use it to improve customers' shopping experience, staffs' work efficienc
 - This application avoids such a condition. You have **no need to pay** for this software, and it's easy to configure.
 - Most of those professional softwares have *overloaded functions*, that is, there are things that are not needed, but you have to pay, to learn, and to suffer.
 - However, this application **have no such pain**. It's light-weight, aim-focused, it's just for you.
-- Professional also means *[proprietary](https://www.gnu.org/proprietary/proprietary.html)*. You lost yourself when using them.
-- But this application is **[Free Software](https://www.gnu.org/)**, it serves only you, your business, and your customers.
+- Professional also means [*proprietary*](https://www.gnu.org/proprietary/proprietary.html). You lost yourself when using them.
+- But this application is [**Free Software**](https://www.gnu.org/), it serves only you, your business, and your customers.
 
 ## Install
 - If your computer uses Windows, it's recommended to switch to a [GNU/Linux system](https://www.gnu.org/distros/free-distros.html). If you don't want, just read on.
@@ -46,7 +46,7 @@ You can use it to improve customers' shopping experience, staffs' work efficienc
     - On phone's browser, open `http://computerIP:8101/`, then open menu inside the webpage.
     - Scroll down, in "Manage" section, you can record your items. Scan a barcode, input item's name, unit, price, and click on Record button.
     - Take your phone and a parterner, just walk through your market/shop, record all your items.
-  - Once you have your own database, it's time to copy the database to other computers. (Feature precast: on webpage side import database)
+  - Once you have your own database, it's time to export & import the database (in menu) to other computers.
   - If an item your customers take have not been recorded, you can simply input the *price* of it.
   - After scanning customer's items, *Settle* the deal. Browser will give a print dialog for bill printing.
 
