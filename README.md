@@ -22,20 +22,20 @@ You can use it to improve customers' shopping experience, staffs' work efficienc
 
 ## Install
 - If your computer uses Windows, it's recommended to switch to a [GNU/Linux system](https://www.gnu.org/distros/free-distros.html). If you don't want, just read on.
-  - (Optional) Make your system can auto-login.
-  - In Windows, install *Python3* and a non-IE standalone *browser*.
-  - Download a release of this repository, extract it to somewhere.
-  - Create a **shortcut** for *main.py* by right-click-drag the file and select "Create shortcut".
-  - After that, put both main.py file *shortcut* and browser *shortcut* (usually on desktop) to `Start Menu -> Startup` folder.
-  - Configure your browser, set mainpage (or startup page) to `http://localhost:8101/`
-  - Reboot the computer, now it runs your application automatically.
+  - Install a latest version of any non-IE browser.
+  - Download file `Market-Helper.exe` of newest release, open it to work.
+  - In the opened browser, press F11 to fullscreen.
+  - You can put this executable into Desktop (for launch conveniently) or `Start Menu -> startup` (for auto-run upon startup) folder.
 - If it's running GNU/Linux, then:
-  - (Optional) Make your system can auto-login.
-  - Ensure package *python3* and *firefox* is already installed.
-  - Download a release of this repository, extract it to somewhere, remember location of the *main.py* file.
+  - Ensure package *python3* and a *browser* is already installed.
+  - Download newest release of this repository, extract it to somewhere, remember location of the *main.py* file.
   - Edit the file `(user's home folder)/.bashrc` (or other autorun file depending on your environment), append a line after the file:
     - `python3 ~/path/to/main.py`
-  - Reboot the computer, now it runs your application automatically
+  - Change the main-page of browser to `http://localhost:8101/`.
+  - Logout and login, open your browser, now it works.
+  - You can also add your browser into auto-run (also fullscreen):
+    - `firefox --kiosk http://localhost:8101/`, or Chromium:
+    - `chromium --start-fullscreen http://localhost:8101/`
 
 ## Tips
 - For barcode & price system:

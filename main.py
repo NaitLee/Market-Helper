@@ -6,6 +6,8 @@ import socket
 import socketserver
 import threading
 
+os.chdir(os.path.dirname(__file__) or '.')  # CD to this directory
+
 from helpers import *
 from statics import _statics
 import mimeLib
@@ -206,8 +208,6 @@ if __name__ == '__main__':
     address, port = d['address'], int(d['port'])
     server = ThreadedHTTPServer((address, port), MyServer)
     print('Starting server on address %s, port %s...' % (address, port))
-    if not _statics['debug']:
-        os.system('firefox --kiosk http://127.0.0.1:8101/ &')
 
     try:
         # Start a thread with the server -- that thread will then start one

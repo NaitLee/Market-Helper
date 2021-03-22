@@ -164,7 +164,7 @@ class MarketHelper {
             let number = parseFloat(e.innerText);
             sum += isNaN(number) ? 0 : number;
         });
-        this.elemSum.innerText = sum.toString();
+        this.elemSum.innerText = Math.round(sum * 100) / 100;
         return sum;
     }
     clear() {

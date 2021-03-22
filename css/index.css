@@ -12,6 +12,10 @@ body {
     font-family: sans-serif;
 }
 
+iframe {
+    border: none;
+}
+
 .hidden {
     display: none;
 }

@@ -2,18 +2,6 @@
 
 import urllib, os, random
 
-FALSE_VALUES = ('', '0')
-FALSE_VALUE = '0'
-TRUE_VALUE = '1'
-
-def if_(c):
-    """ Helper function for boolean operations of macro system """
-    return TRUE_VALUE if c else FALSE_VALUE
-
-def if_not_(c):
-    """ Helper function for boolean operations of macro system """
-    return TRUE_VALUE if not c else FALSE_VALUE
-
 def smartoscmd(posixcall, ntcall):
     return ntcall() if os.name == 'nt' else posixcall()
 
