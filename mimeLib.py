@@ -16,9 +16,10 @@ mimesheetA = {
     '*.mpeg;*.mpg;*.mpe': 'video/mpeg',
     '*.avi': 'video/x-msvideo',
     '*.txt': 'text/plain;charset=utf-8',
-    '*.css': 'text/css',
-    '*.js':  'text/javascript',
-    '*.m3u;*.m3u8': 'application/vnd.apple.mpegurl'
+    '*.css': 'text/css;charset=utf-8',
+    '*.js':  'text/javascript;charset=utf-8',
+    '*.m3u;*.m3u8': 'application/vnd.apple.mpegurl',
+    '*.ttf': 'font/ttf'
 }
 
 def setmime(data: dict):

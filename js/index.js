@@ -39,25 +39,11 @@ class MarketHelper {
     }
     log(msg, type = 'normal') {
         this.elemLog.querySelectorAll('*').forEach(e => e.remove());
-        switch (type) {
-            case 'normal':
-                let text = document.createElement('span');
-                text.innerText = msg;
-                this.elemLog.appendChild(text);
-                break;
-            case 'warning':
-                let yellow_text = document.createElement('span');
-                yellow_text.classList.add('warning');
-                yellow_text.innerText = msg;
-                this.elemLog.appendChild(yellow_text);
-                break;
-            case 'error':
-                let red_text = document.createElement('span');
-                red_text.classList.add('error');
-                red_text.innerText = msg;
-                this.elemLog.appendChild(red_text);
-                break;
-        }
+        if (msg == '') return '';
+        let text = document.createElement('span');
+        text.innerText = i18N.get('LogFormat').replace('%time%', new Date().toLocaleTimeString('en-US')).replace('%msg%', msg);
+        text.classList.add(type);
+        this.elemLog.appendChild(text);
         return msg;
     }
     shutdown() {
@@ -173,13 +159,16 @@ class MarketHelper {
         this.currentMember = '';
         // this.log('');
     }
+    hiddenAppendChild(element) {
+        this.hiddenSection.querySelectorAll('*').forEach(e => e.remove());
+        this.hiddenSection.appendChild(element);
+    }
     settle() {
         let sum = this.calcSum();
         if (this.currentMember != '') {
             this.inputCredits.value = -sum;
             this.useCredits();
         }
-        this.hiddenSection.querySelectorAll('*').forEach(e => e.remove());
         let iframe = document.createElement('iframe');
         iframe.src = '/paper_template.html';
         iframe.addEventListener('load', () => {
@@ -205,7 +194,20 @@ class MarketHelper {
             iframe.contentWindow.print();
             this.clear();
         });
-        this.hiddenSection.appendChild(iframe);
+        this.hiddenAppendChild(iframe);
+    }
+    printMemberCode() {
+        let code = this.memberCode.innerText;
+        let iframe = document.createElement('iframe');
+        let html = `<!doctype html>
+        <html><head><style>
+        @font-face { src: url('/css/ConnectCode39.ttf'); font-family: 'ConnectCode39'; }
+        </style></head><body>
+        <p style="font-size: 3em; font-family: 'ConnectCode39'; writing-mode: vertical-lr;">${code}</p>
+        </body></html>`;
+        this.hiddenAppendChild(iframe);
+        iframe.contentDocument.write(html);
+        iframe.contentWindow.print();
     }
 }
 

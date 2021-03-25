@@ -3,6 +3,36 @@
     font-family: 'ConnectCode39';
 }
 
+@keyframes highlight_warning {
+    0% {
+        background-color: yellow;
+        color: black;
+    }
+    80% {
+        background-color: yellow;
+        color: black;
+    }
+    100% {
+        background-color: unset;
+        color: yellow;
+    }
+}
+
+@keyframes highlight_error {
+    0% {
+        background-color: red;
+        color: white;
+    }
+    80% {
+        background-color: red;
+        color: white;
+    }
+    100% {
+        background-color: unset;
+        color: red;
+    }
+}
+
 body {
     margin: 0;
     background-color: #001824;
@@ -21,10 +51,12 @@ iframe {
 }
 
 .warning {
-    color: rgb(255, 255, 0);
+    color: yellow;
+    animation: highlight_warning 5s 0s;
 }
 .error {
-    color: rgb(255, 73, 73);
+    color: red;
+    animation: highlight_error 5s 0s;
 }
 
 a:link, a:visited {

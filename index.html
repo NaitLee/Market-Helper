@@ -23,23 +23,23 @@
                 <tbody>
                     <tr>
                         <td>Barcode: </td>
-                        <td><input type="text" id="input_barcode" tabindex="1" /></td>
+                        <td><input type="text" id="input_barcode" spellcheck="false" tabindex="1" /></td>
                         <td><button onclick="helper.input();">Input</button></td>
                     </tr>
                     <tr>
                         <td>Price: </td>
-                        <td><input type="text" id="input_price" tabindex="2" /></td>
+                        <td><input type="text" id="input_price" spellcheck="false" tabindex="2" /></td>
                         <td><button onclick="helper.inputAsPrice();">Insert</button></td>
                     </tr>
                     <tr class="use_credit_form">
                         <td>Use Credits: </td>
-                        <td><input type="text" id="input_credits" /></td>
-                        <td><button onclick="helper.useCredits();">Insert</button></td>
+                        <td><input type="text" id="input_credits" spellcheck="false" /></td>
+                        <td><button onclick="helper.useCredits();">Use</button></td>
                     </tr>
                 </tbody>
             </table>
             <button class="big" onclick="helper.toggleMenu();" tabindex="4">Menu</button>
-            <p id="log"></p>
+            <p><button onclick="helper.log('');">Clear Log</button><span id="log"></span></p>
         </div>
         <div class="right">
             <div class="sum">SumBefore<span id="sum">0</span>SumAfter</div>
@@ -56,7 +56,10 @@
         <div>
             <h1>Member Code</h1>
             <div id="member_code"></div>
-            <p>Please shot this code with mobile phone</p>
+            <p>
+                <span>Please shot this code with mobile phone.</span>
+                <span>Or </span><span><button onclick="helper.printMemberCode();">Print</button></span>
+            </p>
         </div>
         <div>
             <h1>Manage</h1>
@@ -77,6 +80,7 @@ InvalidCode=%code%: Invalid code!
 WelcomeMember=%member%, Welcome! Your credits: %left_credits%
 UsedCredits=%member%: Successfully used credits! Credits left: %left_credits%
 MemberNotFound=Sorry, no data about this member!
+LogFormat=%time%: %msg%
 
 [zh-CN]
 Market Helper=售货辅助器
@@ -89,6 +93,7 @@ Barcode: =条码：
 Price: =价格：
 Input=输入
 Insert=计入
+Use=使用
 (Manual Input)=（手动输入）
 Menu=菜单
 Close Menu=关闭菜单
@@ -103,12 +108,16 @@ ForOne=1 个
 PaperTitle=购物清单
 PaperDescription=合计：%sum% 元
 InvalidCode=%code%：无效条码！
-Please shot this code with mobile phone=请使用手机拍摄此条形码
+Please shot this code with mobile phone.=请使用手机拍摄此条形码。
+Or =或者 
+Print=打印
 WelcomeMember=%member%，欢迎光临！您持有积分：%left_credits%
 Use Credits: =使用积分：
 UsedCredits=%member%：积分使用成功！剩余积分：%left_credits%
 MemberNotFound=抱歉，未检索到此会员信息！
 Manage=管理
+LogFormat=%time%：%msg%
+Clear Log=清除日志
     </textarea>
     <script src="./js/i18-N.js"></script>
     <script src="./js/index.js"></script>
