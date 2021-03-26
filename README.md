@@ -50,13 +50,22 @@ You can use it to improve customers' shopping experience, staffs' work efficienc
   - If an item your customers take have not been recorded, you can simply input the *price* of it.
   - After scanning customer's items, *Settle* the deal. Browser will give a print dialog for bill printing.
 
+- For live barcode system:
+  - There are some weight measuring devices that generates barcode lively, this kind of barcode contains informations like price.
+  - Command `-B` means live barcode mode. Code like `-B0123-00002345` means item `0123`, which is defined by your own shop, worth $2.345.
+  - You can configure your device to generate such a barcode. For details, consult your device producer.
+
 - For barcode & member system:
   - When input in barcode starts with a minus sign (-), it's considered as a "command". A letter following as the command type, after details, span with another minus...
   - "-a" means register for a *member*, syntax like `-a10010001000-Name` registers a member named `Name` with ID `10010001000`. ID can be phone number or other things.
-  - After registering a member, a *member code* is provided. Customer just shot (not scan) the code with phone camera.
+  - After registering a member, a *member code* is provided. Customer just shot (not scan) the code with phone camera. (More reliably, print that.)
   - Once scan the member code with barcode scanner, this helper will treat current session as *member session* until "Settle".
   - In member session, you can *use credit* for one time, *credit* is given after one settlement according to how many the customer spent.
   - With this credit system, you can give often-comers some gifts. This is required by many shop/markets for far development.
+
+- Other
+  - With command `-*4` will **multiply** the last item for 4 times, i.e. there's 4 same items.
+  - With command `-+4` will **add** 4 the same item as last, i.e. there's 5 same items.
 
 ## Support
 If you wish to support this project, you can:

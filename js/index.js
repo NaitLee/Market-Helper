@@ -87,6 +87,18 @@ class MarketHelper {
     async doAction(code) {
         let info = code.slice(2).split(this.actionSign);
         switch (code[1]) {
+            case '*':
+            case '+':
+                // Multiply last item
+                let count = parseInt(info[0]) - (code[1] == '*' ? 1 : 0);
+                if (this.table.lastChild == null) return;
+                for (let i = 0; i < count; i++) {
+                    let copy = this.table.lastChild.cloneNode(true);
+                    this.table.append(copy);
+                }
+                this.log(i18N.get('MultiplyedCount').replace('%count%', count));
+                this.calcSum();
+                break;
             case 'a':
                 // Register member
                 // let member_code = btoa(info[0]).toUpperCase().replace('=', '$');    // Code39 have only one case for letters
@@ -109,6 +121,16 @@ class MarketHelper {
                 } else {
                     this.log(i18N.get('MemberNotFound'), 'error');
                 }
+                break;
+            case 'B':
+                // Live barcode, i.e. from weight-defined items, lively generated barcode
+                // Format should be: |-B|0123|-|01234567|, first is item type, second is price, 1 as $0.001
+                this.getRecord(info[0]).then(record => {
+                    this.addItem(record.replace(',0', `,${parseInt(info[1]) / 1000}`));
+                    this.calcSum();
+                }, error => this.log(error, 'error'));
+                this.inputBarcode.value = '';
+                this.inputBarcode.focus();
                 break;
         }
     }

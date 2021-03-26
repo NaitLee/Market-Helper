@@ -39,7 +39,7 @@ body {
     color: #b5f7ff;
     font-size: 1.28em;
     overflow: hidden;
-    font-family: sans-serif;
+    font-family: 'DejaVu Sans', sans-serif;
 }
 
 iframe {
@@ -75,7 +75,7 @@ button {
     color: #b5f7ff;
     border: 1px solid #b5f7ff;
     background-color: transparent;
-    font-family: sans-serif;
+    font-family: 'DejaVu Sans', sans-serif;
 }
 button.big {
     padding: 0.5em 1em;
@@ -87,7 +87,7 @@ input[type="text"] {
     color: #b5f7ff;
     border: 1px solid #b5f7ff;
     background-color: transparent;
-    font-family: sans-serif;
+    font-family: 'DejaVu Sans', sans-serif;
     width: 12em;
 }
 
