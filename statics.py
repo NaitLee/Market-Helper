@@ -3,8 +3,8 @@
 from helpers import read_ini, get_apikey
 
 _statics = {
-    'version': '0.0.1',
-    'build': '001',
+    'version': '1.0.4',
+    'build': '005',
     'buffer_size': 4096,
     'config': read_ini('config.ini'),
     'apikey': get_apikey(),

@@ -1,7 +1,9 @@
 database
 __pycache__
 launcher.exe
+launcher.sh
 Market-Helper.zip
+tarball.b64
 docs
 _asyncio.pyd
 _bz2.pyd

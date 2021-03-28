@@ -21,21 +21,19 @@ You can use it to improve customers' shopping experience, staffs' work efficienc
 - But this application is [**Free Software**](https://www.gnu.org/), it serves only you, your business, and your customers.
 
 ## Install
+*Note: It's recommended to use Chromium-based browsers. Due to unknown reason in Firefox, scan result of barcode can be incomplete with a delay problem.*
 - If your computer uses Windows, it's recommended to switch to a [GNU/Linux system](https://www.gnu.org/distros/free-distros.html). If you don't want, just read on.
-  - Install a latest version of any non-IE browser.
-  - Download file `Market-Helper.exe` of newest release, open it to work.
+  - Install a latest version of any non-IE *browser*.
+  - Download file `Market-Helper-Windows.exe` of newest release, open it to work.
   - In the opened browser, press F11 to fullscreen.
   - You can put this executable into Desktop (for launch conveniently) or `Start Menu -> startup` (for auto-run upon startup) folder.
 - If it's running GNU/Linux, then:
   - Ensure package *python3* and a *browser* is already installed.
-  - Download newest release of this repository, extract it to somewhere, remember location of the *main.py* file.
-  - Edit the file `(user's home folder)/.bashrc` (or other autorun file depending on your environment), append a line after the file:
-    - `python3 ~/path/to/main.py`
+  - Download file `Market-Helper-Linux.sh` of newest release.
   - Change the main-page of browser to `http://localhost:8101/`.
-  - Logout and login, open your browser, now it works.
-  - You can also add your browser into auto-run (also fullscreen):
-    - `firefox --kiosk http://localhost:8101/`, or Chromium:
-    - `chromium --start-fullscreen http://localhost:8101/`
+  - Open the downloaded file **directly**, and open browser, now it works.
+  - In the opened browser, press F11 to fullscreen.
+  - You can add both file and browser to autorun.
 
 ## Tips
 - For barcode & price system:

@@ -21,20 +21,17 @@
 - 但此应用是[**自由软件**](https://www.gnu.org/)，它只为您，您的工作，还有您的顾客服务。
 
 ## 安装
+*注：推荐使用基于 Chromium 的浏览器。Firefox 由于未知原因，条码扫描输入时会因延迟漏掉字符。*
 - 如果您的电脑在使用 Windows，那么建议切换至 [GNU/Linux 系统](https://www.gnu.org/distros/free-distros.html) 。如果您不愿意，请继续：
   - 安装最新的非 IE 浏览器。
   - 下载此软件最新发行中的 `Market-Helper.exe`，打开它即可。
   - 您可以将此文件放到桌面上，或者放入 `开始菜单 -> 启动` 文件夹以使其开机启动。
 - 如果它在运行 GNU/Linux， 那么：
-  - 确认已安装 *python3* 和最新的*浏览器*。
-  - 下载此软件最新的发行，并解压至某处。且记住其中 main.py 文件的位置。
-  - 编辑文件 `(用户主目录)/.bashrc` （或其他与自启动相对应的文件），在文件末尾添加一行：
-    - `python3 ~/main.py文件的位置/main.py`
+  - 确认已安装 *python3* 和一种最新的*浏览器*。
+  - 下载此软件最新发行中的 `Market-Helper-Linux.sh`。
   - 将浏览器的主页设置为 `http://localhost:8101/`
-  - 重新登录您的账户（或重启），打开浏览器即可。
-  - 您也可以将浏览器设为自启动，在 `.bashrc` 添加：
-    - `firefox --kiosk http://localhost:8101/`, 或者 Chromium：
-    - `chromium --start-fullscreen http://localhost:8101/`
+  - **直接打开**下载的文件，并打开浏览器即可。
+  - 您也可以将此文件和浏览器放入自启动脚本。
 
 ## 小技巧
 - 条码与价格系统：
